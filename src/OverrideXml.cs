@@ -40,7 +40,7 @@ namespace Ikriv.Xml
         /// </summary>
         public OverrideXml Override<T>()
         {
-            return Override(typeof (T));
+            return Override(typeof(T));
         }
 
         /// <summary>
@@ -138,12 +138,32 @@ namespace Ikriv.Xml
         }
 
         /// <summary>
+        /// Adds [XmlElement(Order = order)] attribute to current type or member
+        /// </summary>
+        public OverrideXml XmlElement(int order)
+        {
+            Open();
+            _attributes.XmlElements.Add(new XmlElementAttribute() { Order = order });
+            return this;
+        }
+
+        /// <summary>
         /// Adds [XmlElement(name)] attribute to current type or member
         /// </summary>
         public OverrideXml XmlElement(string name)
         {
             Open();
             _attributes.XmlElements.Add(new XmlElementAttribute(name));
+            return this;
+        }
+
+        /// <summary>
+        /// Adds [XmlElement(ElementName = name, Order = order)] attribute to current type or member
+        /// </summary>
+        public OverrideXml XmlElement(string name, int order)
+        {
+            Open();
+            _attributes.XmlElements.Add(new XmlElementAttribute(name) { Order = order });
             return this;
         }
 
@@ -161,7 +181,7 @@ namespace Ikriv.Xml
         /// Adds [XmlIgnore] attribute to current type or member
         /// </summary>
         /// <param name="bIgnore"></param>
-        public OverrideXml XmlIgnore(bool bIgnore=true)
+        public OverrideXml XmlIgnore(bool bIgnore = true)
         {
             Open();
             _attributes.XmlIgnore = bIgnore;
@@ -189,6 +209,16 @@ namespace Ikriv.Xml
         }
 
         /// <summary>
+        /// Adds [XmlAnyElement(Order = order)] attribute to current type or member
+        /// </summary>
+        public OverrideXml XmlAnyElement(int order)
+        {
+            Open();
+            _attributes.XmlAnyElements.Add(new XmlAnyElementAttribute() { Order = order });
+            return this;
+        }
+
+        /// <summary>
         /// Adds [XmlAnyElement(name)] attribute to current type or member
         /// </summary>
         public OverrideXml XmlAnyElement(string name)
@@ -199,12 +229,32 @@ namespace Ikriv.Xml
         }
 
         /// <summary>
-        /// Adds [XmlAnyElement(name,ns)] attribute to current type or member
+        /// Adds [XmlAnyElement(Name = name, Order = order)] attribute to current type or member
+        /// </summary>
+        public OverrideXml XmlAnyElement(string name, int order)
+        {
+            Open();
+            _attributes.XmlAnyElements.Add(new XmlAnyElementAttribute(name) { Order = order });
+            return this;
+        }
+
+        /// <summary>
+        /// Adds [XmlAnyElement(name, ns)] attribute to current type or member
         /// </summary>
         public OverrideXml XmlAnyElement(string name, string ns)
         {
             Open();
             _attributes.XmlAnyElements.Add(new XmlAnyElementAttribute(name, ns));
+            return this;
+        }
+
+        /// <summary>
+        /// Adds [XmlAnyElement(Name = name, Namespace = ns, Order = order)] attribute to current type or member
+        /// </summary>
+        public OverrideXml XmlAnyElement(string name, string ns, int order)
+        {
+            Open();
+            _attributes.XmlAnyElements.Add(new XmlAnyElementAttribute(name, ns) { Order = order });
             return this;
         }
 
@@ -219,7 +269,7 @@ namespace Ikriv.Xml
         }
 
         /// <summary>
-        /// Adds [XmlArray] attribute to current type or memeber
+        /// Adds [XmlArray] attribute to current type or member
         /// </summary>
         public OverrideXml XmlArray()
         {
@@ -229,7 +279,17 @@ namespace Ikriv.Xml
         }
 
         /// <summary>
-        /// Adds [XmlArray(elementName)] attribute to current type or memeber
+        /// Adds [XmlArray(Order = order)] attribute to current type or member
+        /// </summary>
+        public OverrideXml XmlArray(int order)
+        {
+            Open();
+            _attributes.XmlArray = new XmlArrayAttribute() { Order = order };
+            return this;
+        }
+
+        /// <summary>
+        /// Adds [XmlArray(elementName)] attribute to current type or member
         /// </summary>
         public OverrideXml XmlArray(string elementName)
         {
@@ -239,7 +299,17 @@ namespace Ikriv.Xml
         }
 
         /// <summary>
-        /// Adds specified instance of XmlArrayAttribute to current type or memeber
+        /// Adds [XmlArray(ElementName = name, Order = order)] attribute to current type or member
+        /// </summary>
+        public OverrideXml XmlArray(string elementName, int order)
+        {
+            Open();
+            _attributes.XmlArray = new XmlArrayAttribute(elementName) { Order = order };
+            return this;
+        }
+
+        /// <summary>
+        /// Adds specified instance of XmlArrayAttribute to current type or member
         /// </summary>
         public OverrideXml Attr(XmlArrayAttribute attribute)
         {
